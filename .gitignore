@@ -1,0 +1,6 @@
+/.settings
+/.pydevproject
+/.project
+*.pyc
+ghostdriver.log
+/importer/

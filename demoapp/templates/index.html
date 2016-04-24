@@ -1,0 +1,92 @@
+{% extends 'base.html' %}{% load bootstrap3 %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-xs-12">
+			<h4>Accounts</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="well">
+				{% bootstrap_icon 'equalizer' %} Piraeus Bank
+				<h2>{{accounts.winbank}} <span style="font-size: 20px">registered accounts</span></h2>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="well">
+				{% bootstrap_icon 'equalizer' %} National Bank of Greece
+				<h2>{{accounts.nbg}} <span style="font-size: 20px">registered accounts</span></h2>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="well">
+				{% bootstrap_icon 'equalizer' %} PayPal
+				<h2>{{accounts.paypal}} <span style="font-size: 20px">registered accounts</span></h2>
+			</div>
+		</div>
+	</div>{% if accounts.all.count %}
+	<div class="row" style="margin-top: 20px">
+		<div class="col-xs-12">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Institution</th>
+						<th>Number</th>
+						<th>Balance</th>
+					</tr>
+				</thead>
+				<tbody>{% for account in accounts.all %}
+					<tr>
+						<td>{{account.get_account_type_display}}</td>
+						<td>{{account.institution.full_name}}</td>
+						<td>{{account.number}}</td>
+						<td>{{account.balance}} {% bootstrap_icon 'euro' %}</td>
+					</tr>{% endfor %}
+					<tr>
+						<th colspan="3" style="text-align: right">Total:</th>
+						<th>{{accounts.total.balance__sum}} {% bootstrap_icon 'euro' %}</th>
+					<tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{% endif %}
+	<div class="row" style="margin-top: 30px">
+		<div class="col-xs-12">
+			<h4>Transactions</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12" style="margin-top: 20px">{% if transactions %}
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th style="text-align: center;">Posted</th>
+						<th style="text-align: center;">Completed</th>
+						<th style="text-align: center;">Account</th>
+						<th style="text-align: center;">Type</th>
+						<th style="text-align: center;">Description</th>
+						<th style="text-align: center;">Amount</th>
+						<th style="text-align: center;">Comment</th>
+					</tr>
+				</thead>
+				<tbody>{% for trans in transactions %}
+					<tr style="text-align: center;">
+						<td>{{trans.posted|date}}</td>
+						<td>{{trans.completed|date}}</td>
+						<td>{{trans.account.number}}</td>
+						<td>{{trans.type}}</td>
+						<td>{{trans.description}}</td>
+						<td>{{trans.value_amount}} {% bootstrap_icon 'euro' %}</td>
+						<td>{{trans.comment|safe}}</td>
+					</tr>{% endfor %}
+				</tbody>
+			</table>
+			{% else %}
+			No transactions were found.
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

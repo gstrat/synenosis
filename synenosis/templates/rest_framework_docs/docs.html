@@ -1,0 +1,19 @@
+{% extends "rest_framework_docs/base.html" %}{% load static %}
+
+{% block style %}{{block.super}}
+<link rel="stylesheet" href="{% static "css/synenosis.css" %}">
+{% endblock %}
+
+{% block github_badge %}{% endblock %}
+
+{% block title %}Synenosis{% endblock %}
+{% block logo %}<a class="navbar-brand" href="http://www.synenosis.gr">Synenosis API Documentation</a>{% endblock %}
+
+{% block jumbotron %}
+<div class="jumbotron">
+  <h1>Synenosis REST API</h1>
+  <h3>Documentantion of the Synenosis REST API.</h3>
+</div>
+{% endblock %}
+
+{% block footer %}<div class="footer">Copyright © 2016 Synenosis.</div>{% endblock %}

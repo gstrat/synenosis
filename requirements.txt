@@ -1,0 +1,11 @@
+django==1.9.5
+djangorestframework==3.3.3
+psycopg2==2.6.1
+pillow==3.2.0
+celery==3.1.19
+redis==2.10.5
+django-bootstrap3==7.0.1
+git+https://github.com/debnet/django-rest-framework-docs
+beautifulsoup4==4.4.1
+selenium==2.53.2
+paypal==1.2.5

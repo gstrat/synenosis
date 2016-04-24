@@ -1,0 +1,14 @@
+{% extends 'base.html' %}{% load bootstrap3 %}
+
+{% block acclass %}active{% endblock %}
+
+{% block content %}
+	<form action="/" method="post" class="form">
+	  	{% csrf_token %}
+		{% bootstrap_form form %}
+		<a class="run-job btn btn-primary" data-title="Import PayPal account" href="/import-paypal/">
+			{% bootstrap_icon "ok" %}&#xa0;Submit
+		</a>
+		<div id="progress-wrapper" style="margin-top: 40px"></div>
+	</form>
+{% endblock %}
